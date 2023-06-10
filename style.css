@@ -13,6 +13,7 @@
   --highlight-color: rgba(255, 255, 255, 0.2);
   --switch-bg-url: url(./assets/moon-stars.svg);
   --border-color: white;
+  --background-container: #1D1F20;
 
 }
 
@@ -25,6 +26,7 @@
   --highlight-color: rgba(0, 0, 0, 0.1);
   --switch-bg-url: url(./assets/sun.svg);
   --border-color: black;
+  --background-container: #FEE1E8;
 }
 
 body {
@@ -38,12 +40,35 @@ body * {
 }
 
 #container {
-  border: 2px solid var(--border-color);
+  border: 2px solid var(--borderWidth);
+    background: var(--background-container);
+  position: relative;
  width: 100%;
  max-width: 588px;
  margin: 56px auto 0px;
  padding: 0 24px;
 }
+
+.gradient-border {
+  --borderWidth: 3px;
+  position: relative;
+  border-radius: var(--borderWidth);
+}
+.gradient-border::after {
+  content: '';
+  position: absolute;
+  top: calc(-1 * var(--borderWidth));
+  left: calc(-1 * var(--borderWidth));
+  height: calc(100% + var(--borderWidth) * 2);
+  width: calc(100% + var(--borderWidth) * 2);
+  background: linear-gradient(60deg, #b933f7, #9719ff, #5d18ff, #3700ff, #3204ff, #d814ff, #ff1194, #eb0fff);
+  border-radius: calc(2 * var(--borderWidth));
+  z-index: -1;
+  animation: animatedgradient 3s ease alternate infinite;
+  background-size: 300% 300%;
+}
+
+
 
 #profile {
   text-align: center;
@@ -196,3 +221,18 @@ footer {
     left: 0;
   }
 }
+
+
+@keyframes animatedgradient {
+	0% {
+		background-position: 0% 50%;
+	}
+	50% {
+		background-position: 100% 50%;
+	}
+	100% {
+		background-position: 0% 50%;
+	}
+}
+
+
